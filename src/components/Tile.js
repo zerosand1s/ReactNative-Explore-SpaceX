@@ -9,7 +9,7 @@ export default class Tile extends Component {
   handlePress = (tileProps) => {
     DataService.getDataForField(tileProps.text)
       .then((details) => {
-        NavigationService.navigate(tileProps.screen, details)
+        NavigationService.navigate(tileProps.screen, { data: details })
       });
   }
 

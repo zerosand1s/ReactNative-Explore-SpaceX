@@ -12,7 +12,7 @@ const getDataForField = (field) => {
 const fetchMissionDetails = async () => {
   try {
     let response = await fetch(AppConfig.MISSIONS_URL);
-    return response.json();
+    return await response.json();
   } catch (error) {
     console.log(error);
   }
@@ -21,7 +21,7 @@ const fetchMissionDetails = async () => {
 const fetchRocketDetails = async () => {
   try {
     let response = await fetch(AppConfig.ROCKETS_URL);
-    return response.json();
+    return await response.json();
   } catch (error) {
     console.log(error);
   }
