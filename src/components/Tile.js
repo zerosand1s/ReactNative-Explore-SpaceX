@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet, Alert } from 'react-native';
 
+import DataService from '../services/DataService';
 import NavigationService from '../services/NavigationService';
 
 export default class Tile extends Component {
 
   handlePress = (text) => {
-    NavigationService.navigate('Details');
+    DataService.getDataForField(text);
   }
 
   render() {

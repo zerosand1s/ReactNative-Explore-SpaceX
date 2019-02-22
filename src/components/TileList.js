@@ -7,8 +7,8 @@ export default class TileList extends Component {
   render() {
     return (
       <View onPress={ (text) => this.props.onPress(text) }>
-        <Tile text='Missions'></Tile>
-        <Tile text='Rockets'></Tile>
+        <Tile text='missions'></Tile>
+        <Tile text='rockets'></Tile>
       </View>
     );
   }
