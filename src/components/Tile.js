@@ -6,15 +6,18 @@ import NavigationService from '../services/NavigationService';
 
 export default class Tile extends Component {
 
-  handlePress = (text) => {
-    DataService.getDataForField(text);
+  handlePress = (tileProps) => {
+    DataService.getDataForField(tileProps.text)
+      .then((details) => {
+        NavigationService.navigate(tileProps.screen, details)
+      });
   }
 
   render() {
     return (
-      <TouchableHighlight onPress={ () => this.handlePress(this.props.text) }>
+      <TouchableHighlight onPress={ () => this.handlePress(this.props.tileProps) }>
         <View style={ styles.tileView }>
-          <Text style={ styles.tileText }>{ this.props.text }</Text>
+          <Text style={ styles.tileText }>{ this.props.tileProps.text }</Text>
         </View>
       </TouchableHighlight>
     );
