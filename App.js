@@ -7,13 +7,15 @@ import HomeScreen from './src/screens/HomeScreen';
 import MissionsScreen from './src/screens/MissionsScreen';
 import RocketsScreen from './src/screens/RocketsScreen';
 import LaunchesScreen from './src/screens/LaunchesScreen';
+import LaunchesInYearScreen from './src/screens/LaunchesInYearScreen';
 
 const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     Missions: MissionsScreen,
     Rockets: RocketsScreen,
-    Launches: LaunchesScreen
+    Launches: LaunchesScreen,
+    LaunchesInYear: LaunchesInYearScreen
   },
   {
     initialRouteName: 'Home'
