@@ -6,6 +6,7 @@ const getDataForField = (field) => {
   switch(field) {
     case 'missions': return Promise.resolve(fetchMissionDetails());
     case 'rockets': return Promise.resolve(fetchRocketDetails());
+    case 'launches': return Promise.resolve(fetchLaunchDetails());
   }
 }
 
@@ -21,6 +22,15 @@ const fetchMissionDetails = async () => {
 const fetchRocketDetails = async () => {
   try {
     let response = await fetch(AppConfig.ROCKETS_URL);
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const fetchLaunchDetails = async () => {
+  try {
+    let response = await fetch(AppConfig.LAUNCHES_URL);
     return await response.json();
   } catch (error) {
     console.log(error);

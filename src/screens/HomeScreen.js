@@ -7,7 +7,8 @@ import NavigationService from '../services/NavigationService';
 
 const SpaceXData = [
   { id: '1', title: 'missions', screen: 'Missions'},
-  { id: '2', title: 'rockets', screen: 'Rockets'}
+  { id: '2', title: 'rockets', screen: 'Rockets'},
+  { id: '3', title: 'launches', screen: 'Launches'}
 ];
 
 export default class HomeScreen extends Component {
