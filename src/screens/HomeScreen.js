@@ -33,18 +33,26 @@ export default class HomeScreen extends Component {
               fontWeight: 'bold'
             }}
             bottomDivider={ true }
-            chevron={ true }
-            onPress={ () => this.handlePress(item) }        
+            chevron={{
+              reverse: true,
+              raised: true,
+              color: 'gray'
+            }}
+            onPress={ () => this.handlePress(item) }
+            containerStyle={ styles.listItem }      
           />
         )}
+        style={{ padding: 10 }}
       />
-
     );
   }
 }
 
 const styles = StyleSheet.create({
-  homeScreenView: {
-    padding: '5%'
+  listItem: {
+    height: 100,
+    borderRadius: 10,
+    backgroundColor: 'skyblue',
+    marginBottom: 10  
   }
 });
