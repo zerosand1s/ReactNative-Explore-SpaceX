@@ -7,16 +7,24 @@ import NavigationService from '../services/NavigationService';
 
 export default class LaunchesScreen extends Component {
 
+  launches = [];
+
   constructor(props) {
     super(props);
-    const { navigation } = props;
-    const launches = navigation.getParam('data', []);
-    this.state = { launches: _.groupBy(launches, 'launch_year') };
+    this.state = { launches: [] };
+  }
+
+  componentWillMount() {
+    const { navigation } = this.props;
+    launches = navigation.getParam('data', []);
+  }
+
+  componentDidMount() {
+    this.setState({ launches: _.groupBy(launches, 'launch_year') });
   }
 
   handlePress = (year) => {
-    NavigationService.navigate('LaunchesInYear', 
-      { launches: this.state.launches[year] });
+    NavigationService.navigate('LaunchesInYear', { launches: this.state.launches[year] });
   }
 
   render() {
