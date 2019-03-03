@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
-import { View, Text, TouchableHighlight, FlatList, StyleSheet } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { Text, TouchableHighlight, FlatList, StyleSheet, ImageBackground } from 'react-native';
 
 import DataService from '../services/DataService';
 import NavigationService from '../services/NavigationService';
 
+import _ from 'lodash';
+
 const SpaceXData = [
-  { id: '1', title: 'missions', screen: 'Missions'},
-  { id: '2', title: 'rockets', screen: 'Rockets'},
-  { id: '3', title: 'launches', screen: 'Launches'}
+  { id: '1', title: 'missions', screen: 'Missions', image: require('../assets/images/missions.jpg') },
+  { id: '2', title: 'rockets', screen: 'Rockets', image: require('../assets/images/rockets.jpg')},
+  { id: '3', title: 'launches', screen: 'Launches', image: require('../assets/images/launches.jpg')}
 ];
 
 export default class HomeScreen extends Component {
@@ -20,29 +21,28 @@ export default class HomeScreen extends Component {
       });
   }
 
+  _renderItem = (item) => {
+    return (
+      <TouchableHighlight 
+        style={ styles.touchableHighlight }
+        onPress={ () => this.handlePress(item) }
+        underlayColor={ 'transparent' }>
+          <ImageBackground
+            source={ item.image }
+            style={ styles.imageBackground }
+            imageStyle={ styles.imageStyle }>
+              <Text style={ styles.title }>{ item.title }</Text>
+          </ImageBackground>
+      </TouchableHighlight>
+    ); 
+  }
+
   render() {
     return (
       <FlatList 
         data={ SpaceXData }
         keyExtractor={ (item) => item.id }
-        renderItem={ ({ item }) => (
-          <ListItem 
-            Component={ TouchableHighlight }
-            title={ item.title }
-            titleStyle={{ 
-              textTransform: 'uppercase',
-              fontWeight: 'bold'
-            }}
-            bottomDivider={ true }
-            chevron={{
-              reverse: true,
-              raised: true,
-              color: 'gray'
-            }}
-            onPress={ () => this.handlePress(item) }
-            containerStyle={ styles.listItem }      
-          />
-        )}
+        renderItem={ ({item}) => this._renderItem(item) }
         style={{ padding: 10 }}
       />
     );
@@ -50,10 +50,26 @@ export default class HomeScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  listItem: {
-    height: 100,
+  touchableHighlight: {
+    height: 150,
+    marginBottom: 10
+  },
+  imageBackground: {
+    width: '100%',
+    height: '100%'
+  },
+  imageStyle: {
     borderRadius: 10,
-    backgroundColor: 'skyblue',
-    marginBottom: 10  
+    borderWidth: 1,
+    borderColor: '#000000',
+    resizeMode: 'stretch'
+  },
+  title: {
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: '#ffffff',
+    textAlign: 'center',
+    marginTop: '18%'    
   }
 });

@@ -28,7 +28,6 @@ export default class LaunchesScreen extends Component {
   }
 
   render() {
-
     return (
       <FlatList
         data={ Object.keys(this.state.launches) }
