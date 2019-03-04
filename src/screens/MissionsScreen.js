@@ -43,7 +43,7 @@ export default class MissionsScreen extends Component {
     return (
       <Modal 
         visible={ this.state.isModalVisible } 
-        animationType={ 'slide' }>
+        animationType={ 'fade' }>
           <View style={{ flex: 1, marginTop: '20%', padding: 10 }}>
             <View style={{ alignItems: 'flex-end', marginRight: 10 }}>
               <Icon 
