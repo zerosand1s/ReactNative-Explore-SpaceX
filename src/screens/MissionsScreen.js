@@ -2,12 +2,25 @@ import React, { Component } from 'react';
 import { View, Text, FlatList, Modal, StyleSheet, Linking } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 
+import DataService from '../services/DataService';
 export default class MissionsScreen extends Component {
 
-  state = {
-    mission: null,
-    isModalVisible: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = { 
+      loading: true,
+      missions: [],
+      mission: null,
+      isModalVisible: false
+    };
+  }
+
+  componentDidMount() {
+    DataService.getDataForField('missions')
+      .then((details) => {
+        this.setState({ missions: details, loading: false });
+      });
+  }
 
   handlePress = (mission) => {
     this.setState({
@@ -78,7 +91,7 @@ export default class MissionsScreen extends Component {
     return (
       <View>
         <FlatList
-          data={ missions }
+          data={ this.state.missions }
           keyExtractor={ (item, index) =>  item.mission_id }
           renderItem={ ({ item }) => this._renderItem(item) }
         />

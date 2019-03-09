@@ -2,12 +2,25 @@ import React, { Component } from 'react';
 import { View, Text, FlatList, Modal, Linking, StyleSheet } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 
+import DataService from '../services/DataService';
 export default class RocketsScreen extends Component {
 
-  state = {
-    rocket: null,
-    isModalVisible: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = { 
+      loading: true,
+      rockets: [],
+      rocket: null,
+      isModalVisible: false
+    };
+  }
+
+  componentDidMount() {
+    DataService.getDataForField('rockets')
+      .then((details) => {
+        this.setState({ rockets: details, loading: false });
+      });
+  }
 
   handlePress = (rocket) => {
     this.setState({
@@ -86,7 +99,7 @@ export default class RocketsScreen extends Component {
     return (
       <View>
         <FlatList
-          data={ rockets }
+          data={ this.state.rockets }
           keyExtractor={ (item, index) =>  item.rocket_id }
           renderItem={ ({ item }) => this._renderItem(item)}
         />

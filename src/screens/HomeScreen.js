@@ -14,11 +14,17 @@ const SpaceXData = [
 
 export default class HomeScreen extends Component {
 
+  state = { loading: true };
+
+  // using this method to make sure to re-render component
+  componentDidMount() {
+    this.setState({ loading: false });
+  }
+
   handlePress = (item) => {
-    DataService.getDataForField(item.title)
-      .then((details) => {
-        NavigationService.navigate(item.screen, { data: details })
-      });
+    // do not fetch data here, just navigate to appropriate screen
+    // use componentWillMount life cycle method to fetch data 
+    NavigationService.navigate(item.screen);
   }
 
   _renderItem = (item) => {

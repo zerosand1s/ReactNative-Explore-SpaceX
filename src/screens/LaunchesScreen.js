@@ -3,24 +3,22 @@ import { FlatList } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
 import _ from 'lodash';
+
 import NavigationService from '../services/NavigationService';
+import DataService from '../services/DataService';
 
 export default class LaunchesScreen extends Component {
 
-  launches = [];
-
   constructor(props) {
     super(props);
-    this.state = { launches: [] };
-  }
-
-  componentWillMount() {
-    const { navigation } = this.props;
-    launches = navigation.getParam('data', []);
+    this.state = { launches: [], loading: true };
   }
 
   componentDidMount() {
-    this.setState({ launches: _.groupBy(launches, 'launch_year') });
+    DataService.getDataForField('launches')
+      .then((details) => {
+        this.setState({ launches: _.groupBy(details, 'launch_year'), loading: false });
+      });
   }
 
   handlePress = (year) => {
