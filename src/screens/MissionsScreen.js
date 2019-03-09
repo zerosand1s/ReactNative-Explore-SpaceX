@@ -3,6 +3,9 @@ import { View, Text, FlatList, Modal, StyleSheet, Linking } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 
 import DataService from '../services/DataService';
+
+import globalStyles from '../styles';
+
 export default class MissionsScreen extends Component {
 
   constructor(props) {
@@ -53,30 +56,32 @@ export default class MissionsScreen extends Component {
   }
 
   _renderModal = (mission) => {
-    return (
+    return (    
       <Modal 
-        visible={ this.state.isModalVisible } 
+        visible={ this.state.isModalVisible }         
         animationType={ 'fade' }>
-          <View style={{ flex: 1, marginTop: '20%', padding: 10 }}>
-            <View style={{ alignItems: 'flex-end', marginRight: 10 }}>
-              <Icon 
-                name='times-circle' 
-                type='font-awesome' 
-                size={ 22 }
-                onPress={ () => this.closeModal() }                         
-              ></Icon>            
-            </View>
-            <View>
-              <Text style={ styles.modalTitle }>{ mission.mission_name }</Text>
-              <Text style={ styles.modalManufacturers }>Manufactured By: { mission.manufacturers.join(', ') }</Text>        
-              <Text style={ styles.modalDescription }>{ mission.description }</Text>
-              <View style={ styles.iconsView }>
-                <Icon name='wikipedia-w' type='font-awesome' size={ 14 } underlayColor='transparent' 
-                  containerStyle={ styles.wikiIcon } onPress={ () => Linking.openURL(mission.wikipedia)}></Icon>
-                <Icon name='link' type='font-awesome' size={ 14 }  underlayColor='transparent'
-                  containerStyle={ styles.linkIcon } onPress={ () => Linking.openURL(mission.website)}></Icon>
-                <Icon name='twitter' type='font-awesome' size={ 14 } underlayColor='transparent' 
-                  color={ '#ffffff' } containerStyle={ styles.twitterIcon } onPress={ () => Linking.openURL(mission.twitter)}></Icon>
+          <View style={ globalStyles.modalContainer }>
+            <View style={ globalStyles.modalBase }>
+              <View style={ globalStyles.modalCloseIconView }>
+                <Icon 
+                  name='times-circle' 
+                  type='font-awesome' 
+                  size={ 22 }
+                  onPress={ () => this.closeModal() }                         
+                ></Icon>            
+              </View>
+              <View>
+                <Text style={ globalStyles.modalTitle }>{ mission.mission_name }</Text>
+                <Text style={ styles.modalManufacturers }>Manufactured By: { mission.manufacturers.join(', ') }</Text>        
+                <Text style={ styles.modalDescription }>{ mission.description }</Text>
+                <View style={ globalStyles.modalLinkIconsView }>
+                  <Icon name='wikipedia-w' type='font-awesome' size={ 14 } underlayColor='transparent' 
+                    containerStyle={ globalStyles.wikiIcon } onPress={ () => Linking.openURL(mission.wikipedia)}></Icon>
+                  <Icon name='link' type='font-awesome' size={ 14 }  underlayColor='transparent'
+                    containerStyle={ globalStyles.linkIcon } onPress={ () => Linking.openURL(mission.website)}></Icon>
+                  <Icon name='twitter' type='font-awesome' size={ 14 } underlayColor='transparent' 
+                    color={ '#ffffff' } containerStyle={ globalStyles.twitterIcon } onPress={ () => Linking.openURL(mission.twitter)}></Icon>
+                </View>
               </View>
             </View>
           </View>
@@ -85,14 +90,11 @@ export default class MissionsScreen extends Component {
   }
 
   render() {
-    const { navigation } = this.props;
-    const missions = navigation.getParam('data', []);
-
     return (
       <View>
         <FlatList
           data={ this.state.missions }
-          keyExtractor={ (item, index) =>  item.mission_id }
+          keyExtractor={ (item, index) => item.mission_id }
           renderItem={ ({ item }) => this._renderItem(item) }
         />
 
@@ -111,11 +113,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 3
   },
-  modalTitle: {
-    fontWeight: 'bold',
-    fontSize: 24,
-    marginBottom: 10    
-  },
   modalManufacturers: {
     fontSize: 16,
     marginBottom: 10
@@ -124,36 +121,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 10,
     justifyContent: 'center'
-  },
-  iconsView: { 
-    padding: 10,
-    marginTop: 30,
-    flexDirection: 'row',
-    marginLeft: 20, 
-    justifyContent: 'flex-end'
-  },
-  wikiIcon: {
-    width: 30,
-    height: 30,
-    borderRadius: 50,
-    marginLeft: 10,
-    justifyContent: 'center',
-    backgroundColor: '#F0F0F0'
-  },
-  linkIcon: {
-    width: 30,
-    height: 30,
-    borderRadius: 50,
-    marginLeft: 10,
-    justifyContent: 'center',
-    backgroundColor: '#C0C0C0'
-  },
-  twitterIcon: {
-    width: 30,
-    height: 30,
-    borderRadius: 50,
-    marginLeft: 10,
-    justifyContent: 'center',
-    backgroundColor: '#00aced'
   }
 });

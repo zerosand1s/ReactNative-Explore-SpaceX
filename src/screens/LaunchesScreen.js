@@ -7,6 +7,8 @@ import _ from 'lodash';
 import NavigationService from '../services/NavigationService';
 import DataService from '../services/DataService';
 
+import globalStyles from "../styles";
+
 export default class LaunchesScreen extends Component {
 
   constructor(props) {
