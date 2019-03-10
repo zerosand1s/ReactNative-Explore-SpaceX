@@ -5,7 +5,7 @@ import { ListItem, Icon } from 'react-native-elements';
 import DataService from '../services/DataService';
 
 import StyledView from '../components/StyledView';
-import TitleText from '../components/TitleText';
+import StyledText from '../components/StyledText';
 
 import globalStyles from '../styles';
 
@@ -75,7 +75,14 @@ export default class RocketsScreen extends Component {
               marginTop={10}
               marginBottom={10}
             >
-              <TitleText text={rocket.rocket_name} color={'#FFFFFF'} />
+              <StyledText
+                text={rocket.rocket_name}
+                fontSize={28}
+                fontWeight={'bold'}
+                textAlign={'center'}
+                textTransform={'uppercase'}
+                color={'#FFFFFF'}
+              />
             </StyledView>
             <View>
               <Text style={styles.modalCompany}>Company: {rocket.company}</Text>
