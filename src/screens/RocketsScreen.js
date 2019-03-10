@@ -58,7 +58,7 @@ export default class RocketsScreen extends Component {
     return (
       <Modal visible={this.state.isModalVisible} animationType={'fade'}>
         <StyledView padding={'5%'} backgroundColor={'#FFFFFF'}>
-          <View style={globalStyles.modalBase}>
+          <StyledView flex={1} marginTop={'20%'}>
             <View style={globalStyles.modalCloseIconView}>
               <Icon
                 name="times-circle"
@@ -71,65 +71,179 @@ export default class RocketsScreen extends Component {
               flex={0.4}
               borderRadius={8}
               justifyContent={'center'}
-              backgroundColor={'#3498DB'}
+              backgroundColor={'#2E86C1'}
               marginTop={10}
-              marginBottom={10}
+              marginBottom={3}
             >
               <StyledText
                 text={rocket.rocket_name}
-                fontSize={28}
+                fontSize={30}
                 fontWeight={'bold'}
                 textAlign={'center'}
                 textTransform={'uppercase'}
                 color={'#FFFFFF'}
               />
             </StyledView>
-            <View>
-              <Text style={styles.modalCompany}>Company: {rocket.company}</Text>
-              <Text style={styles.modalDescription}>
-                Stages: {rocket.stages}
-              </Text>
-              <Text style={styles.modalDescription}>
-                Cost per launch: ${rocket.cost_per_launch}
-              </Text>
-              <Text style={styles.modalDescription}>
-                First flight: {rocket.first_flight}
-              </Text>
-              <Text style={styles.modalDescription}>
-                Engines:{' '}
-                {rocket.engines.type.charAt(0).toUpperCase() +
-                  rocket.engines.type.slice(1)}
-                , {rocket.engines.number}
-              </Text>
-              <View>
-                <View
-                  style={{ flexDirection: 'row', alignItems: 'flex-start' }}
-                >
-                  <Text>Specs:</Text>
-                  <Text style={{ marginLeft: 5 }}>
-                    Height: {rocket.height.meters} m ({rocket.height.feet} ft)
-                  </Text>
-                </View>
-                <Text style={{ marginLeft: 50 }}>
-                  Diameter: {rocket.diameter.meters} m ({rocket.diameter.feet}{' '}
-                  ft)
-                </Text>
-                <Text style={{ marginLeft: 50 }}>
-                  Mass: {rocket.mass.kg} kg ({rocket.mass.lb} lb)
-                </Text>
-              </View>
-              <View style={globalStyles.modalLinkIconsView}>
-                <Icon
-                  name="wikipedia-w"
-                  type="font-awesome"
-                  size={14}
-                  underlayColor="transparent"
-                  containerStyle={globalStyles.wikiIcon}
-                  onPress={() => Linking.openURL(mission.wikipedia)}
+            <StyledView flex={1} flexDirection={'row'}>
+              <StyledView
+                flex={0.5}
+                borderRadius={8}
+                justifyContent={'center'}
+                backgroundColor={'#3498DB'}
+                marginTop={10}
+                marginBottom={3}
+                marginRight={5}
+              >
+                <StyledText
+                  text={'Company'}
+                  fontSize={12}
+                  textAlign={'center'}
+                  color={'#FFFFFF'}
                 />
-              </View>
-            </View>
-          </View>
+                <StyledText
+                  text={rocket.company}
+                  fontSize={28}
+                  textAlign={'center'}
+                  color={'#FFFFFF'}
+                />
+              </StyledView>
+              <StyledView
+                flex={0.5}
+                borderRadius={8}
+                justifyContent={'center'}
+                backgroundColor={'#3498DB'}
+                marginTop={10}
+                marginBottom={3}
+                marginLeft={5}
+              >
+                <StyledText
+                  text={'Cost per Launch'}
+                  fontSize={12}
+                  textAlign={'center'}
+                  color={'#FFFFFF'}
+                />
+                <StyledText
+                  text={'$'+rocket.cost_per_launch}
+                  fontSize={24}
+                  textAlign={'center'}
+                  color={'#FFFFFF'}
+                />
+              </StyledView>
+            </StyledView>
+            <StyledView flex={1} flexDirection={'row'}>
+              <StyledView
+                flex={0.4}
+                borderRadius={8}
+                justifyContent={'center'}
+                backgroundColor={'#5DADE2'}
+                marginTop={10}
+                marginBottom={3}
+                marginRight={5}
+              >
+                <StyledText
+                  text={'Stages'}
+                  fontSize={12}
+                  textAlign={'center'}
+                  color={'#FFFFFF'}
+                />
+                <StyledText
+                  text={rocket.stages}
+                  fontSize={50}
+                  textAlign={'center'}
+                  color={'#FFFFFF'}
+                />
+              </StyledView>
+              <StyledView
+                flex={0.6}
+                borderRadius={8}
+                justifyContent={'center'}
+                backgroundColor={'#5DADE2'}
+                marginTop={10}
+                marginBottom={3}
+                marginLeft={5}
+              >
+                <StyledText
+                  text={'First Flight'}
+                  fontSize={12}
+                  textAlign={'center'}
+                  color={'#FFFFFF'}
+                />
+                <StyledText
+                  text={rocket.first_flight}
+                  fontSize={26}
+                  textAlign={'center'}
+                  color={'#FFFFFF'}
+                />
+              </StyledView>
+            </StyledView>
+            <StyledView flex={1} flexDirection={'row'}>
+              <StyledView
+                flex={0.34}
+                borderRadius={8}
+                justifyContent={'center'}
+                backgroundColor={'#85C1E9'}
+                marginTop={10}
+                marginBottom={3}
+                marginRight={5}
+              >
+                <StyledText
+                  text={'Height'}
+                  fontSize={12}
+                  textAlign={'center'}
+                  color={'#FFFFFF'}
+                />
+                <StyledText
+                  text={rocket.height.meters+'m'}
+                  fontSize={24}
+                  textAlign={'center'}
+                  color={'#FFFFFF'}
+                />
+              </StyledView>
+              <StyledView
+                flex={0.34}
+                borderRadius={8}
+                justifyContent={'center'}
+                backgroundColor={'#85C1E9'}
+                marginTop={10}
+                marginBottom={3}                
+              >
+                <StyledText
+                  text={'Diameter'}
+                  fontSize={12}
+                  textAlign={'center'}
+                  color={'#FFFFFF'}
+                />
+                <StyledText
+                  text={rocket.diameter.meters+'m'}
+                  fontSize={24}
+                  textAlign={'center'}
+                  color={'#FFFFFF'}
+                />
+              </StyledView>
+              <StyledView
+                flex={0.34}
+                borderRadius={8}
+                justifyContent={'center'}
+                backgroundColor={'#85C1E9'}
+                marginTop={10}
+                marginBottom={3}
+                marginLeft={5}
+              >
+                <StyledText
+                  text={'Mass'}
+                  fontSize={12}
+                  textAlign={'center'}
+                  color={'#FFFFFF'}
+                />
+                <StyledText
+                  text={rocket.mass.kg+'kg'}
+                  fontSize={24}
+                  textAlign={'center'}
+                  color={'#FFFFFF'}
+                />
+              </StyledView>
+            </StyledView>
+          </StyledView>
         </StyledView>
       </Modal>
     );
