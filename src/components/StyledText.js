@@ -8,6 +8,10 @@ const TextWrapper = styled.Text`
   text-transform: ${props =>
     props.textTransform ? props.textTransform : 'none'}
   color: ${props => (props.color ? props.color : '#000000')}
+  marginTop: ${props => (props.marginTop ? props.marginTop : '0')}
+  marginRight: ${props => (props.marginRight ? props.marginRight : '0')}
+  marginBottom: ${props => (props.marginBottom ? props.marginBottom : '0')}
+  marginLeft: ${props => (props.marginLeft ? props.marginLeft : '0')}
 `;
 
 const StyledText = props => <TextWrapper {...props}>{props.text}</TextWrapper>;

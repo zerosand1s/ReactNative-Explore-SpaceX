@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import NavigationService from './src/services/NavigationService';
@@ -27,10 +27,10 @@ const AppContainer = createAppContainer(AppNavigator);
 export default class App extends Component {
   render() {
     return (
-      <AppContainer 
-        ref={ navigatorRef => {
+      <AppContainer
+        ref={navigatorRef => {
           NavigationService.setTopLevelNavigator(navigatorRef);
-        } }
+        }}
       />
     );
   }

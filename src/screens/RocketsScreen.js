@@ -123,7 +123,7 @@ export default class RocketsScreen extends Component {
                   color={'#FFFFFF'}
                 />
                 <StyledText
-                  text={'$'+rocket.cost_per_launch}
+                  text={'$' + rocket.cost_per_launch}
                   fontSize={24}
                   textAlign={'center'}
                   color={'#FFFFFF'}
@@ -131,27 +131,51 @@ export default class RocketsScreen extends Component {
               </StyledView>
             </StyledView>
             <StyledView flex={1} flexDirection={'row'}>
-              <StyledView
-                flex={0.4}
-                borderRadius={8}
-                justifyContent={'center'}
-                backgroundColor={'#5DADE2'}
-                marginTop={10}
-                marginBottom={3}
-                marginRight={5}
-              >
-                <StyledText
-                  text={'Stages'}
-                  fontSize={12}
-                  textAlign={'center'}
-                  color={'#FFFFFF'}
-                />
-                <StyledText
-                  text={rocket.stages}
-                  fontSize={50}
-                  textAlign={'center'}
-                  color={'#FFFFFF'}
-                />
+              <StyledView flex={0.5} flexDirection={'column'}>
+                <StyledView
+                  flex={0.5}
+                  borderRadius={8}
+                  justifyContent={'center'}
+                  backgroundColor={'#5DADE2'}
+                  marginTop={10}
+                  marginBottom={3}
+                  marginRight={5}
+                >
+                  <StyledText
+                    text={rocket.stages}
+                    fontSize={28}
+                    textAlign={'center'}
+                    color={'#FFFFFF'}
+                  />
+                  <StyledText
+                    text={'Stages'}
+                    fontSize={12}
+                    textAlign={'center'}
+                    color={'#FFFFFF'}
+                  />
+                </StyledView>
+                <StyledView
+                  flex={0.5}
+                  borderRadius={8}
+                  justifyContent={'center'}
+                  backgroundColor={'#5DADE2'}
+                  marginTop={10}
+                  marginBottom={3}
+                  marginRight={5}
+                >
+                  <StyledText
+                    text={rocket.engines.number}
+                    fontSize={28}
+                    textAlign={'center'}
+                    color={'#FFFFFF'}
+                  />
+                  <StyledText
+                    text={rocket.engines.number > 1 ? 'Engines' : 'Engine'}
+                    fontSize={12}
+                    textAlign={'center'}
+                    color={'#FFFFFF'}
+                  />
+                </StyledView>
               </StyledView>
               <StyledView
                 flex={0.6}
@@ -178,7 +202,7 @@ export default class RocketsScreen extends Component {
             </StyledView>
             <StyledView flex={1} flexDirection={'row'}>
               <StyledView
-                flex={0.34}
+                flex={0.5}
                 borderRadius={8}
                 justifyContent={'center'}
                 backgroundColor={'#85C1E9'}
@@ -187,62 +211,73 @@ export default class RocketsScreen extends Component {
                 marginRight={5}
               >
                 <StyledText
-                  text={'Height'}
-                  fontSize={12}
-                  textAlign={'center'}
-                  color={'#FFFFFF'}
-                />
-                <StyledText
-                  text={rocket.height.meters+'m'}
-                  fontSize={24}
-                  textAlign={'center'}
-                  color={'#FFFFFF'}
-                />
-              </StyledView>
-              <StyledView
-                flex={0.34}
-                borderRadius={8}
-                justifyContent={'center'}
-                backgroundColor={'#85C1E9'}
-                marginTop={10}
-                marginBottom={3}                
-              >
-                <StyledText
-                  text={'Diameter'}
-                  fontSize={12}
-                  textAlign={'center'}
-                  color={'#FFFFFF'}
-                />
-                <StyledText
-                  text={rocket.diameter.meters+'m'}
-                  fontSize={24}
-                  textAlign={'center'}
-                  color={'#FFFFFF'}
-                />
-              </StyledView>
-              <StyledView
-                flex={0.34}
-                borderRadius={8}
-                justifyContent={'center'}
-                backgroundColor={'#85C1E9'}
-                marginTop={10}
-                marginBottom={3}
-                marginLeft={5}
-              >
-                <StyledText
                   text={'Mass'}
                   fontSize={12}
                   textAlign={'center'}
                   color={'#FFFFFF'}
                 />
                 <StyledText
-                  text={rocket.mass.kg+'kg'}
+                  text={rocket.mass.kg + 'kg'}
                   fontSize={24}
                   textAlign={'center'}
                   color={'#FFFFFF'}
                 />
               </StyledView>
+              <StyledView flex={0.5} flexDirection={'column'}>
+                <StyledView
+                  flex={0.5}
+                  borderRadius={8}
+                  justifyContent={'center'}
+                  backgroundColor={'#85C1E9'}
+                  marginTop={10}
+                  marginBottom={3}
+                  marginLeft={5}
+                >
+                  <StyledText
+                    text={'Height'}
+                    fontSize={12}
+                    textAlign={'center'}
+                    color={'#FFFFFF'}
+                  />
+                  <StyledText
+                    text={rocket.height.meters + 'm'}
+                    fontSize={24}
+                    textAlign={'center'}
+                    color={'#FFFFFF'}
+                  />
+                </StyledView>
+                <StyledView
+                  flex={0.5}
+                  borderRadius={8}
+                  justifyContent={'center'}
+                  backgroundColor={'#85C1E9'}
+                  marginTop={10}
+                  marginBottom={3}
+                  marginLeft={5}
+                >
+                  <StyledText
+                    text={'Diameter'}
+                    fontSize={12}
+                    textAlign={'center'}
+                    color={'#FFFFFF'}
+                  />
+                  <StyledText
+                    text={rocket.diameter.meters + 'm'}
+                    fontSize={24}
+                    textAlign={'center'}
+                    color={'#FFFFFF'}
+                  />
+                </StyledView>
+              </StyledView>
             </StyledView>
+            <StyledText
+              text={'Learn more...'}
+              textAlign={'right'}
+              color={'#0000EE'}
+              marginTop={10}
+              marginBottom={'-15%'}
+              onPress={() => Linking.openURL(rocket.wikipedia)}
+            />
           </StyledView>
         </StyledView>
       </Modal>

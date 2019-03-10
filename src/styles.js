@@ -48,6 +48,6 @@ export default globalStyles = StyleSheet.create({
   },
   modalCloseIconView: {
     alignItems: 'flex-end',
-    marginRight: 10
+    marginRight: 5
   }
 });
