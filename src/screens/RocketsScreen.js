@@ -1,10 +1,13 @@
-import React, { Component } from "react";
-import { View, Text, FlatList, Modal, Linking, StyleSheet } from "react-native";
-import { ListItem, Icon } from "react-native-elements";
+import React, { Component } from 'react';
+import { View, Text, FlatList, Modal, Linking, StyleSheet } from 'react-native';
+import { ListItem, Icon } from 'react-native-elements';
 
-import DataService from "../services/DataService";
+import DataService from '../services/DataService';
 
-import globalStyles from "../styles";
+import StyledView from '../components/StyledView';
+import StyledTitleView from '../components/StyledTitleView';
+
+import globalStyles from '../styles';
 
 export default class RocketsScreen extends Component {
   constructor(props) {
@@ -18,7 +21,7 @@ export default class RocketsScreen extends Component {
   }
 
   componentDidMount() {
-    DataService.getDataForField("rockets").then(details => {
+    DataService.getDataForField('rockets').then(details => {
       this.setState({ rockets: details, loading: false });
     });
   }
@@ -53,8 +56,8 @@ export default class RocketsScreen extends Component {
 
   _renderModal = rocket => {
     return (
-      <Modal visible={this.state.isModalVisible} animationType={"fade"}>
-        <View style={globalStyles.modalContainer}>
+      <Modal visible={this.state.isModalVisible} animationType={'fade'}>
+        <StyledView padding={'5%'} backgroundColor={'#FFFFFF'}>
           <View style={globalStyles.modalBase}>
             <View style={globalStyles.modalCloseIconView}>
               <Icon
@@ -64,10 +67,13 @@ export default class RocketsScreen extends Component {
                 onPress={() => this.closeModal()}
               />
             </View>
+            <StyledTitleView
+              text={rocket.rocket_name}
+              color={'#FFFFFF'}         
+              backgroundColor={'#F1C40F'}                          
+            />
             <View>
-              <Text style={globalStyles.modalTitle}>{rocket.rocket_name}</Text>
-              <Text style={styles.modalCompany}>Company: {rocket.company}</Text>
-              <Text style={styles.modalDescription}>{rocket.description}</Text>
+              <Text style={styles.modalCompany}>Company: {rocket.company}</Text>            
               <Text style={styles.modalDescription}>
                 Stages: {rocket.stages}
               </Text>
@@ -78,14 +84,14 @@ export default class RocketsScreen extends Component {
                 First flight: {rocket.first_flight}
               </Text>
               <Text style={styles.modalDescription}>
-                Engines:{" "}
+                Engines:{' '}
                 {rocket.engines.type.charAt(0).toUpperCase() +
                   rocket.engines.type.slice(1)}
                 , {rocket.engines.number}
               </Text>
               <View>
                 <View
-                  style={{ flexDirection: "row", alignItems: "flex-start" }}
+                  style={{ flexDirection: 'row', alignItems: 'flex-start' }}
                 >
                   <Text>Specs:</Text>
                   <Text style={{ marginLeft: 5 }}>
@@ -93,7 +99,7 @@ export default class RocketsScreen extends Component {
                   </Text>
                 </View>
                 <Text style={{ marginLeft: 50 }}>
-                  Diameter: {rocket.diameter.meters} m ({rocket.diameter.feet}{" "}
+                  Diameter: {rocket.diameter.meters} m ({rocket.diameter.feet}{' '}
                   ft)
                 </Text>
                 <Text style={{ marginLeft: 50 }}>
@@ -112,7 +118,7 @@ export default class RocketsScreen extends Component {
               </View>
             </View>
           </View>
-        </View>
+        </StyledView>
       </Modal>
     );
   };
@@ -150,6 +156,6 @@ const styles = StyleSheet.create({
   modalDescription: {
     fontSize: 14,
     marginBottom: 10,
-    justifyContent: "center"
+    justifyContent: 'center'
   }
 });

@@ -7,6 +7,7 @@ export default globalStyles = StyleSheet.create({
     backgroundColor: 'skyblue'
   },
   modalBase: {
+    flex: 1,
     marginTop: '20%'
   },
   modalTitle: {
